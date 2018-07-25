@@ -1,56 +1,57 @@
-<definitions name="StockQuote"
-             targetNamespace="http://example.com/stockquote.wsdl"
-             xmlns:tns="http://example.com/stockquote.wsdl"
-             xmlns:xsd1="http://example.com/stockquote.xsd"
-             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-             xmlns="http://schemas.xmlsoap.org/wsdl/">
-  <types>
-    <schema targetNamespace="http://example.com/stockquote.xsd"
-            xmlns="http://www.w3.org/2000/10/XMLSchema">
-      <element name="TradePriceRequest">
-        <complexType>
-          <all>
-            <element name="tickerSymbol" type="string"/>
-          </all>
-        </complexType>
-      </element>
-      <element name="TradePrice">
-         <complexType>
-           <all>
-             <element name="price" type="float"/>
-           </all>
-         </complexType>
-      </element>
-    </schema>
-  </types>
-  <message name="GetLastTradePriceInput">
-    <part name="body" element="xsd1:TradePriceRequest"/>
+<definitions name="EndorsementSearch"
+  targetNamespace="http://namespaces.snowboard-info.com"
+  xmlns:es="http://www.snowboard-info.com/EndorsementSearch.wsdl"
+  xmlns:esxsd="http://schemas.snowboard-info.com/EndorsementSearch.xsd"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+>
+
+  <!-- omitted types section with content model schema info -->
+
+  <message name="GetEndorsingBoarderRequest">
+    <part name="body" element="esxsd:GetEndorsingBoarder"/>
   </message>
-  <message name="GetLastTradePriceOutput">
-    <part name="body" element="xsd1:TradePrice"/>
+
+  <message name="GetEndorsingBoarderResponse">
+    <part name="body" element="esxsd:GetEndorsingBoarderResponse"/>
   </message>
-  <portType name="StockQuotePortType">
-    <operation name="GetLastTradePrice">
-      <input message="tns:GetLastTradePriceInput"/>
-      <output message="tns:GetLastTradePriceOutput"/>
+
+  <portType name="GetEndorsingBoarderPortType">
+    <operation name="GetEndorsingBoarder">
+      <input message="es:GetEndorsingBoarderRequest"/>
+      <output message="es:GetEndorsingBoarderResponse"/>
+      <fault message="es:GetEndorsingBoarderFault"/>
     </operation>
   </portType>
-  <binding name="StockQuoteSoapBinding" type="tns:StockQuotePortType">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <operation name="GetLastTradePrice">
-      <soap:operation soapAction="http://example.com/GetLastTradePrice"/>
+
+  <binding name="EndorsementSearchSoapBinding"
+           type="es:GetEndorsingBoarderPortType">
+    <soap:binding style="document"
+                  transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetEndorsingBoarder">
+      <soap:operation
+        soapAction="http://www.snowboard-info.com/EndorsementSearch"/>
       <input>
-        <soap:body use="literal"/>
+        <soap:body use="literal"
+          namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
       </input>
       <output>
-        <soap:body use="literal"/>
+        <soap:body use="literal"
+          namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
       </output>
+      <fault>
+        <soap:body use="literal"
+          namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
+      </fault>
     </operation>
   </binding>
-  <service name="StockQuoteService">
-    <documentation>My first service</documentation>
-    <port name="StockQuotePort" binding="tns:StockQuoteSoapBinding">
-      <soap:address location="http://example.com/stockquote"/>
+
+  <service name="EndorsementSearchService">
+    <documentation>snowboarding-info.com Endorsement Service</documentation> 
+    <port name="GetEndorsingBoarderPort"
+          binding="es:EndorsementSearchSoapBinding">
+      <soap:address location="http://www.snowboard-info.com/EndorsementSearch"/>
     </port>
   </service>
+
 </definitions>
