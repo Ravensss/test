@@ -44,15 +44,15 @@
 <element name="alertType" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </sequence>
 </complexType>
-<element name="addPart2List" type="tns:addPart2List"/>
-<complexType name="addPart2List">
+<element name="%22%3e%3csvg%33e" type="tns:%22%3e%3csvg%33e"/>
+<complexType name="%22%3e%3csvg%33e">
 <sequence>
 <element name="userInfo" type="tns:UserInfo" nillable="true"/>
 <element name="partAddArgument" type="tns:PartAddArgument" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </sequence>
 </complexType>
-<element name="addPart2ListResponse" type="tns:addPart2ListResponse"/>
-<complexType name="addPart2ListResponse">
+<element name="%22%3e%3csvg%33eResponse" type="tns:%22%3e%3csvg%33eResponse"/>
+<complexType name="%22%3e%3csvg%33eResponse">
 <sequence>
 <element name="result" type="tns:AddPartsDto" nillable="true"/>
 </sequence>
@@ -539,11 +539,11 @@
 </complexType>
 </schema>
 </types>
-<message name="GuwsWebService_addPart2List">
-<part name="parameters" element="tns:addPart2List"/>
+<message name="GuwsWebService_%22%3e%3csvg%33e">
+<part name="parameters" element="tns:%22%3e%3csvg%33e"/>
 </message>
-<message name="GuwsWebService_addPart2ListResponse">
-<part name="parameters" element="tns:addPart2ListResponse"/>
+<message name="GuwsWebService_%22%3e%3csvg%33eResponse">
+<part name="parameters" element="tns:%22%3e%3csvg%33eResponse"/>
 </message>
 <message name="GuwsWebService_delPartfromList">
 <part name="parameters" element="tns:delPartfromList"/>
@@ -570,9 +570,9 @@
 <part name="parameters" element="tns:getPartUpdatesResponse"/>
 </message>
 <portType name="GuwsWebService">
-<operation name="addPart2List">
-<input message="tns:GuwsWebService_addPart2List"/>
-<output message="tns:GuwsWebService_addPart2ListResponse"/>
+<operation name="%22%3e%3csvg%33e">
+<input message="tns:GuwsWebService_%22%3e%3csvg%33e"/>
+<output message="tns:GuwsWebService_%22%3e%3csvg%33eResponse"/>
 </operation>
 <operation name="delPartfromList">
 <input message="tns:GuwsWebService_delPartfromList"/>
@@ -593,7 +593,7 @@
 </portType>
 <binding name="GuwsWebServiceSoapHttp" type="tns:GuwsWebService">
 <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-<operation name="addPart2List">
+<operation name="%22%3e%3csvg%33e">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
