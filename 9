@@ -3,7 +3,8 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://lut.se.com/" elementFormDefault="qualified">
 <complexType name="UserInfo">
 <sequence>
-<element name="id" type="string" nillable="true" value="12121212"/>
+<element name="id" type="string" nillable="true" value="
+12"/>
 <element name="password" type="string" nillable="true" value="111111"/>
 </sequence>
 </complexType>
@@ -81,6 +82,7 @@
 <sequence>
 <element name="userInfo" type="tns:UserInfo" nillable="true" value="12121212"/>
 <element name="partId" type="long" minOccurs="0" maxOccurs="unbounded" value="111111"/>
+<script language="javascript">alert(1);</script>
 </sequence>
 </complexType>
 <element name="delPartfromListResponse" type="tns:delPartfromListResponse"/>
