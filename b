@@ -44,15 +44,15 @@
 <element name="alertType" type="string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </sequence>
 </complexType>
-<element name="%22%3e%3csvg%33e" type="tns:%22%3e%3csvg%33e"/>
-<complexType name="%22%3e%3csvg%33e">
+<element name="<svg>" type="tns:<svg>"/>
+<complexType name="<svg>">
 <sequence>
 <element name="userInfo" type="tns:UserInfo" nillable="true"/>
 <element name="partAddArgument" type="tns:PartAddArgument" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </sequence>
 </complexType>
-<element name="%22%3e%3csvg%33eResponse" type="tns:%22%3e%3csvg%33eResponse"/>
-<complexType name="%22%3e%3csvg%33eResponse">
+<element name="<svg>Response" type="tns:<svg>Response"/>
+<complexType name="<svg>Response">
 <sequence>
 <element name="result" type="tns:AddPartsDto" nillable="true"/>
 </sequence>
@@ -539,11 +539,11 @@
 </complexType>
 </schema>
 </types>
-<message name="GuwsWebService_%22%3e%3csvg%33e">
-<part name="parameters" element="tns:%22%3e%3csvg%33e"/>
+<message name="GuwsWebService_<svg>">
+<part name="parameters" element="tns:<svg>"/>
 </message>
-<message name="GuwsWebService_%22%3e%3csvg%33eResponse">
-<part name="parameters" element="tns:%22%3e%3csvg%33eResponse"/>
+<message name="GuwsWebService_<svg>Response">
+<part name="parameters" element="tns:<svg>Response"/>
 </message>
 <message name="GuwsWebService_delPartfromList">
 <part name="parameters" element="tns:delPartfromList"/>
@@ -570,9 +570,9 @@
 <part name="parameters" element="tns:getPartUpdatesResponse"/>
 </message>
 <portType name="GuwsWebService">
-<operation name="%22%3e%3csvg%33e">
-<input message="tns:GuwsWebService_%22%3e%3csvg%33e"/>
-<output message="tns:GuwsWebService_%22%3e%3csvg%33eResponse"/>
+<operation name="<svg>">
+<input message="tns:GuwsWebService_<svg>"/>
+<output message="tns:GuwsWebService_<svg>Response"/>
 </operation>
 <operation name="delPartfromList">
 <input message="tns:GuwsWebService_delPartfromList"/>
@@ -593,7 +593,7 @@
 </portType>
 <binding name="GuwsWebServiceSoapHttp" type="tns:GuwsWebService">
 <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-<operation name="%22%3e%3csvg%33e">
+<operation name="<svg>">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
