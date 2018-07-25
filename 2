@@ -1,56 +1,109 @@
-<definitions name="EndorsementSearch"
-  targetNamespace="http://namespaces.snowboard-info.com"
-  xmlns:es="http://www.snowboard-info.com/EndorsementSearch.wsdl"
-  xmlns:esxsd="http://schemas.snowboard-info.com/EndorsementSearch.xsd"
-  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-  xmlns="http://schemas.xmlsoap.org/wsdl/"
->
+<?xml version="1.0"?>
+<definitions name="contacts"
+             targetNamespace="http://example.com/contacts.wsdl"
+             xmlns:tns="http://example.com/contacts.wsdl"
+             xmlns:types="http://example.com/contacts.xsd"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
 
-  <!-- omitted types section with content model schema info -->
+  <types>
+    <xsd:schema targetNamespace="http://example.com/contacts.xsd"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="contact">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:integer" minOccurs="0"/>
+            <xsd:element name="first_name" type="xsd:string"/>
+            <xsd:element name="last_name" type="xsd:string"/>
+            <xsd:element name="projects" type="xsd:string" 
+                         minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="id">
+         <xsd:complexType>
+           <xsd:sequence>
+             <xsd:element name="id" type="xsd:integer"/>
+           </xsd:sequence>
+         </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="LocaleOptions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="language"  type="xsd:string" minOccurs="0"/>
+            <xsd:element name="localizeErrors" type="xsd:boolean" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>            
+      <xsd:element name="DebuggingHeader">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="debugLevel" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
 
-  <message name="GetEndorsingBoarderRequest">
-    <part name="body" element="esxsd:GetEndorsingBoarder"/>
+  <message name="store\"><img src=a>">
+    <part name="body" element="types:contact"/>
   </message>
 
-  <message name="GetEndorsingBoarderResponse">
-    <part name="body" element="esxsd:GetEndorsingBoarderResponse"/>
+  <message name="store_response">
+    <part name="body" element="types:id"/>
   </message>
 
-  <portType name="GetEndorsingBoarderPortType">
-    <operation name="GetEndorsingBoarder">
-      <input message="es:GetEndorsingBoarderRequest"/>
-      <output message="es:GetEndorsingBoarderResponse"/>
-      <fault message="es:GetEndorsingBoarderFault"/>
+  <message name="retrieve">
+    <part name="body" element="types:id"/>
+  </message>
+
+  <message name="retrieve_response">
+    <part name="body" element="types:contact"/>
+  </message>
+
+  <message name="Header">
+    <part element="types:DebuggingHeader"              name="DebuggingHeader"/>
+    <part element="types:LocaleOptions"                name="LocaleOptions"/>
+  </message>
+
+  <portType name="contacts_port_type">
+    <operation name="store">
+      <input message="tns:store"/>
+      <output message="tns:store_response"/>
+    </operation>
+    <operation name="retrieve">
+      <input message="tns:retrieve"/>
+      <output message="tns:retrieve_response"/>
     </operation>
   </portType>
 
-  <binding name="EndorsementSearchSoapBinding"
-           type="es:GetEndorsingBoarderPortType">
-    <soap:binding style="document"
-                  transport="http://schemas.xmlsoap.org/soap/http"/>
-    <operation name="GetEndorsingBoarder">
-      <soap:operation
-        soapAction="http://www.snowboard-info.com/EndorsementSearch"/>
+  <binding name="contacts_binding" type="tns:contacts_port_type">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="store">
+      <soap:operation soapAction="store"/>
       <input>
-        <soap:body use="literal"
-          namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
+        <soap:header use="literal" message="tns:Header" part="LocaleOptions"/>
+        <soap:header use="literal" message="tns:Header" part="DebuggingHeader"/>
+        <soap:body use="literal"/>
       </input>
       <output>
-        <soap:body use="literal"
-          namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
+        <soap:body use="literal"/>
       </output>
-      <fault>
-        <soap:body use="literal"
-          namespace="http://schemas.snowboard-info.com/EndorsementSearch.xsd"/>
-      </fault>
+    </operation>
+    <operation name="retrieve">
+      <soap:operation soapAction="retrieve"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
     </operation>
   </binding>
 
-  <service name="EndorsementSearchService">
-    <documentation>snowboarding-info.com Endorsement Service</documentation> 
-    <port name="GetEndorsingBoarderPort"
-          binding="es:EndorsementSearchSoapBinding">
-      <soap:address location="http://www.snowboard-info.com/EndorsementSearch"/>
+  <service name="contacts_service">
+    <port name="contacts_port" binding="tns:contacts_binding">
+      <soap:address location="http://localhost:8080"/>
     </port>
   </service>
 
